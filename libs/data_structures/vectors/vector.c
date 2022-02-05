@@ -15,13 +15,26 @@ vector createVector(size_t n) {
         exit(1);
     }
 
-    return (vector){a, 0, n};
+    return (vector) {a, 0, n};
 }
 
+// Изменяет количество памяти, выделенное под хранение элементов
+// вектора v на newCapacity, если newCapacity не равно 0,
+// иначе
 void reserve(vector *v, size_t newCapacity) {
-    if (newCapacity == NULL)
-        v->data = 0;
+    if (newCapacity != 0) {
+        v->data = realloc(v->data, newCapacity * sizeof(int));
+        if (v->data == NULL) {
+            fprintf(stderr, "bad alloc");
+            exit(2);
+        }
+    } else
+        v->data = NULL;
+    v->capacity = newCapacity;
+    if (v->size > newCapacity)
+        v->size = newCapacity;
 }
+
 // Удаляет элементы из контейнера v, не освобождая при этом память
 void clear(vector *v) {
     v->size = 0;
@@ -30,7 +43,7 @@ void clear(vector *v) {
 // Освобождает память, выделенную под неиспользуемые элементы
 // контейнера v
 void shrinkToFit(vector *v) {
-    v->capacity = v->size;
+    reserve(v, v->size);
 }
 
 // Освобождает память, выделенную для вектора v
