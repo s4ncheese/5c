@@ -7,6 +7,8 @@
 #define HUND_SIZE 100
 #define THOUS_SIZE 1000
 
+/*--------------------------------------------------PUSH BACK EMPTY--------------------------------------------------*/
+
 void test_pushBack_emptyVectorZeroSize() {
     vector v = createVector(ZERO_SIZE);
     int x = 193458;
@@ -31,7 +33,7 @@ void test_pushBack_emptyVectorHundSize() {
     deleteVector(&v);
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
+/*------------------------------------------------PUSH BACK NOT EMPTY------------------------------------------------*/
 
 void test1_pushBack_notEmpty_thous_size() {
     vector v = createVector(THOUS_SIZE);
@@ -59,7 +61,7 @@ void test2_pushBack_notEmpty_ten_size() {
     deleteVector(&v);
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
+/*--------------------------------------------------PUSH BACK FULL---------------------------------------------------*/
 
 void test_pushBack_fullZeroSize() {
     vector v = createVector(ZERO_SIZE);
@@ -84,7 +86,7 @@ void test_pushBack_fullThousSize() {
     assert(v.data[v.size - 1] == x);
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
+/*------------------------------------------------POP BACK NOT EMPTY-------------------------------------------------*/
 
 void test_popBack_notEmptyOneSize() {
     vector v = createVector(ONE_SIZE);
@@ -105,7 +107,20 @@ void test_popBack_notEmptyTenSize() {
     assert(v.size == TEN_SIZE - 1);
 }
 
-/* ----------------------------------------------------------------------------------------------------------------- */
+void test_popBack_notEmpty() {
+    vector v = createVector(ZERO_SIZE);
+    int x = 10;
+    pushBack(&v, x);
+
+    assert(v.size == 1);
+    popBack(&v);
+    assert(v.size == 0);
+    assert(v.capacity == 1);
+
+    deleteVector(&v);
+}
+
+/*----------------------------------------------------FINAL TESTS----------------------------------------------------*/
 
 void test_pushBack_emptyVector() {
     test_pushBack_emptyVectorZeroSize();
@@ -125,6 +140,7 @@ void test_pushBack_full() {
 void test_popBack() {
     test_popBack_notEmptyOneSize();
     test_popBack_notEmptyTenSize();
+    test_popBack_notEmpty();
 }
 
 void test() {
