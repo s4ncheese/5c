@@ -15,8 +15,12 @@ stdlib.h
 -
 malloc.h
 -
+stdbool.h
+-
 
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.h
 stdlib.h
+-
+stdbool.h
 -
 

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
+#include <stdbool.h>
 
 // Возвращает структуру - дескриптор vector из n значений
 vector createVector(size_t n) {
@@ -52,4 +53,45 @@ void deleteVector(vector *v) {
     v->data = NULL;
     v->size = 0;
     v->capacity = 0;
+}
+
+// Возвращает значение true, если вектор v является пустым
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+// Возвращает значение true, если вектор v является полным
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+// Возвращает элемент вектора v
+// с индексом i
+int getVectorValue(vector *v, size_t i) {
+    return v->data[i];
+}
+
+// Добавляет элемент x в конец вектора v.
+// Если он заполнен, увеличивает количество выделенной памяти
+// в два раза
+void pushBack(vector *v, int x) {
+    if (isFull(v)) {
+        if (v->capacity)
+            reserve(v, v->capacity * 2);
+        else
+            reserve(v, 1);
+    }
+    v->data[v->size] = x;
+    v->size++;
+}
+
+// Удаляет последний элемент вектора v. Если вектор пустой,
+// выдает ошибку
+void popBack(vector *v) {
+    if (isEmpty(v)) {
+        fprintf(stderr, "impossible to delete last element:"
+                        " the vector is empty");
+        exit(1);
+    }
+    v->size--;
 }

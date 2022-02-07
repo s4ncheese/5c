@@ -10,8 +10,5 @@ CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj: \
  ../libs/data_structures/bitset/bitset.c \
  ../libs/data_structures/bitset/bitset.h
 CMakeFiles/4e.dir/main.c.obj: \
- ../libs/algorithms/array/array.h \
- ../libs/data_structures/bitset/bitset.h \
- ../libs/data_structures/unordered_array_set/unordered_array_set.h \
  ../libs/data_structures/vectors/vector.h \
  ../main.c
