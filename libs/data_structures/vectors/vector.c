@@ -1,7 +1,3 @@
-//
-// Created by s4ncheese on 02.02.2022.
-//
-
 #include "vector.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,20 +25,21 @@ void reserve(vector *v, size_t newCapacity) {
             fprintf(stderr, "bad alloc");
             exit(2);
         }
-    } else
+    } else {
         v->data = NULL;
+    }
     v->capacity = newCapacity;
     if (v->size > newCapacity)
         v->size = newCapacity;
 }
 
-// Удаляет элементы из контейнера v, не освобождая при этом память
+// Удаляет элементы вектора v, не освобождая при этом память
 void clear(vector *v) {
     v->size = 0;
 }
 
 // Освобождает память, выделенную под неиспользуемые элементы
-// контейнера v
+// вектора v
 void shrinkToFit(vector *v) {
     reserve(v, v->size);
 }
@@ -65,14 +62,13 @@ bool isFull(vector *v) {
     return v->size == v->capacity;
 }
 
-// Возвращает элемент вектора v
-// с индексом i
+// Возвращает элемент вектора v с индексом i
 int getVectorValue(vector *v, size_t i) {
     return v->data[i];
 }
 
 // Добавляет элемент x в конец вектора v.
-// Если он заполнен, увеличивает количество выделенной памяти
+// Если вектор заполнен, увеличивает количество выделенной памяти
 // в два раза
 void pushBack(vector *v, int x) {
     if (isFull(v)) {
@@ -103,8 +99,7 @@ int *atVector(vector *v, size_t index) {
     if (index >= v->size) {
         fprintf(stderr, "IndexError: a[%zu] is not exist", index);
         exit(3);
-    }
-    else
+    } else
         return &v->data[index];
 }
 

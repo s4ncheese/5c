@@ -1,6 +1,5 @@
 #include "libs\data_structures\vectors\vector.h"
 #include <assert.h>
-#include <stdio.h>
 
 #define ZERO_SIZE 0
 #define ONE_SIZE 1
@@ -108,7 +107,7 @@ void test_popBack_notEmptyTenSize() {
     assert(v.size == TEN_SIZE - 1);
 }
 
-void test_popBack_notEmpty() {
+void test_popBack_notEmptyZeroSize() {
     vector v = createVector(ZERO_SIZE);
     int x = 10;
     pushBack(&v, x);
@@ -124,39 +123,40 @@ void test_popBack_notEmpty() {
 /*------------------------------------------------AT NOT EMPTY VECTOR------------------------------------------------*/
 
 void test_atVector_notEmptyVectorVar1() {
-    vector v = (vector){(int[]){1, 2, 99, 4, 42}, 5, 234};
-
-    assert(*atVector(&v, 0) == v.data[0]);
-    assert(*atVector(&v, 1) == v.data[1]);
-    assert(*atVector(&v, 2) == v.data[2]);
-    assert(*atVector(&v, 3) == v.data[3]);
-    assert(*atVector(&v, 4) == v.data[4]);
+    vector v = createVector(TEN_SIZE);
+    v.size = v.capacity;
+    for (size_t i = 0; i < v.size; i++)
+        assert(*atVector(&v, i) == v.data[i]);
 
     deleteVector(&v);
 }
 
 void test_atVector_notEmptyVectorVar2() {
-    vector v = (vector) {(int[]){1, 7, 2}, 3, 3};
+    vector v = createVector(HUND_SIZE);
+    v.size = v.capacity;
 
-    assert(*atVector(&v, 0) == v.data[0]);
-    assert(*atVector(&v, 1) == v.data[1]);
-    assert(*atVector(&v, 2) == v.data[2]);
+    for (size_t i = 0; i < v.size; i++)
+        assert(*atVector(&v, i) == v.data[i]);
 
     deleteVector(&v);
+
 }
 
 /*----------------------------------------------REQUEST TO LAST ELEMENT----------------------------------------------*/
 
 void test_atVector_requestToLastElementVar1() {
-    vector v = (vector) {(int[]){1}, 1, 1};
+    vector v = createVector(TEN_SIZE);
+    v.size = v.capacity;
 
     assert(*atVector(&v, v.size - 1) == v.data[v.size - 1]);
 
     deleteVector(&v);
+
 }
 
 void test_atVector_requestToLastElementVar2() {
-    vector v = (vector) {(int[]){1, 5, 7, 1222543, 9, 0}, 6, 6};
+    vector v = createVector(ONE_SIZE);
+    v.size = v.capacity;
 
     assert(*atVector(&v, v.size - 1) == v.data[v.size - 1]);
 
@@ -166,14 +166,18 @@ void test_atVector_requestToLastElementVar2() {
 /*--------------------------------------------------BACK ONE ELEMENT-------------------------------------------------*/
 
 void test_back_oneElementVer1() {
-    vector v = (vector){(int[]){2}, 1, 5};
+    vector v = createVector(ONE_SIZE);
+    v.size = v.capacity;
+
     assert(*back(&v) == v.data[v.size - 1]);
 
     deleteVector(&v);
 }
 
 void test_back_oneElementVer2() {
-    vector v = (vector){(int[]){99999}, 1, 1};
+    vector v = createVector(ONE_SIZE);
+    v.size = v.capacity;
+
     assert(*back(&v) == v.data[v.size - 1]);
 
     deleteVector(&v);
@@ -199,7 +203,7 @@ void test_pushBack_full() {
 void test_popBack() {
     test_popBack_notEmptyOneSize();
     test_popBack_notEmptyTenSize();
-    test_popBack_notEmpty();
+    test_popBack_notEmptyZeroSize();
 }
 
 void test_atVector_notEmptyVector() {
@@ -212,7 +216,13 @@ void test_back_oneElementInVector() {
     test_back_oneElementVer2();
 }
 
+void test_atVector_requestToLastElement() {
+    test_atVector_requestToLastElementVar1();
+    test_atVector_requestToLastElementVar2();
+}
+
 void test() {
+    test_atVector_requestToLastElement();
     test_atVector_notEmptyVector();
     test_back_oneElementInVector();
     test_pushBack_emptyVector();
