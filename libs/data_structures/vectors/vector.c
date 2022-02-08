@@ -21,7 +21,7 @@ vector createVector(size_t n) {
 
 // Изменяет количество памяти, выделенное под хранение элементов
 // вектора v на newCapacity, если newCapacity не равно 0,
-// иначе
+// иначе значениям вектора присваивает NULL
 void reserve(vector *v, size_t newCapacity) {
     if (newCapacity != 0) {
         v->data = realloc(v->data, newCapacity * sizeof(int));
@@ -94,4 +94,36 @@ void popBack(vector *v) {
         exit(1);
     }
     v->size--;
+}
+
+// Возвращает указатель на элемент вектора v с индексом
+// index, если он принадлежит вектору. Иначе выводится сообщение об
+// ошибке
+int *atVector(vector *v, size_t index) {
+    if (index >= v->size) {
+        fprintf(stderr, "IndexError: a[%zu] is not exist", index);
+        exit(3);
+    }
+    else
+        return &v->data[index];
+}
+
+// Возвращает указатель на последний элемент вектора v
+int *back(vector *v) {
+    if (v->data == NULL || isEmpty(v)) {
+        fprintf(stderr, "IndexError: element is not exist");
+        exit(3);
+    } else
+        return &v->data[v->size - 1];
+}
+
+// Возвращает адрес нулевого элемента вектора v, если его размер
+// не равен 0, или значения не хранят NULL, иначе выводит сообщение
+// об ошибке
+int *front(vector *v) {
+    if (v->data == NULL || isEmpty(v)) {
+        fprintf(stderr, "IndexError: element is not exist");
+        exit(3);
+    } else
+        return &v->data[0];
 }
