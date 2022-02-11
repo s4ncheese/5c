@@ -20,4 +20,10 @@ void freeMemMatrix(matrix m);
 
 void freeMemMatrices(matrix *mArray, int nMatrices);
 
+void inputMatrix(matrix m);
+
+void inputMatrices(matrix *mArray, int nMatrix);
+
+void outputMatrix(matrix m);
+
 #endif

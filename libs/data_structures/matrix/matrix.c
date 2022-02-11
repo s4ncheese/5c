@@ -1,5 +1,6 @@
 #include "matrix.h"
 #include <malloc.h>
+#include <stdio.h>
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -33,4 +34,35 @@ void freeMemMatrix(matrix m) {
 void freeMemMatrices(matrix *mArray, int nMatrices) {
     for (int mNumber = 0; mNumber < nMatrices; mNumber++)
         freeMemMatrix((matrix) mArray[mNumber]);
+}
+
+// Ввод матрицы m
+void inputMatrix(matrix m) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            scanf("%d", &m.values[rowInd][colInd]);
+}
+
+// Ввод массива матриц mArray размера nMatrix
+void inputMatrices(matrix *mArray, int nMatrix) {
+    for (int mInd = 0; mInd < nMatrix; mInd++)
+        inputMatrix(mArray[mInd]);
+}
+
+// Вывод матрицы m
+void outputMatrix(matrix m) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            printf("%d ", m.values[rowInd][colInd]);
+
+        printf("\n");
+    }
+}
+
+// Вывод массива матриц mArray размера nMatrix
+void outputMatrices(matrix *mArray, int nMatrix) {
+    for (int mInd = 0; mInd < nMatrix; mInd++) {
+        outputMatrix(mArray[mInd]);
+        printf("/n");
+    }
 }
