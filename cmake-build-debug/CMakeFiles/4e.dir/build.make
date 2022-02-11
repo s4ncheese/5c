@@ -134,6 +134,7 @@ CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.s: cmake_force
 4e.exe: CMakeFiles/4e.dir/build.make
 4e.exe: libs/algorithms/libalgorithms.a
 4e.exe: libs/data_structures/libdata_structures.a
+4e.exe: libs/algorithms/libalgorithms.a
 4e.exe: CMakeFiles/4e.dir/linklibs.rsp
 4e.exe: CMakeFiles/4e.dir/objects1.rsp
 4e.exe: CMakeFiles/4e.dir/link.txt
