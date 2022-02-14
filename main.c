@@ -1,4 +1,5 @@
 #include "libs\data_structures\vectors\vector.h"
+#include "libs\data_structures\matrix\matrix.h"
 #include <assert.h>
 
 #define ZERO_SIZE 0
@@ -232,7 +233,10 @@ void test() {
 }
 
 int main() {
-    test();
+//    test();
+    matrix m = getMemMatrix(4, 4);
+    inputMatrix(m);
+    bool isE = isSymmetricMatrix(m);
 
     return 0;
 }

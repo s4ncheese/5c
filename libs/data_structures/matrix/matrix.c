@@ -1,7 +1,8 @@
 #include "matrix.h"
 #include <malloc.h>
 #include <stdio.h>
-#include "/../../algorithms/array/array.h"
+#include "../../algorithms/array/array.h"
+#include<stdbool.h>
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -41,7 +42,7 @@ void freeMemMatrices(matrix *mArray, int nMatrices) {
 void inputMatrix(matrix m) {
     for (int rowInd = 0; rowInd < m.nRows; rowInd++)
         for (int colInd = 0; colInd < m.nCols; colInd++)
-            scanf("%d", &m.values[rowInd][colInd]);
+            scanf("%d", &(m.values[rowInd][colInd]));
 }
 
 // Ввод массива матриц mArray размера nMatrix
@@ -79,4 +80,61 @@ void swapRows(matrix m, int row1, int row2) {
 void swapColumns(matrix m, int col1, int col2) {
     for (int rowInd = 0; rowInd < m.nRows; rowInd++)
         swap_(&m.values[rowInd][col1], &m.values[rowInd][col2]);
+}
+
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
+
+}
+
+void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+
+}
+
+// Возвращает значение истина, если матрица m является квадратной,
+// иначе - ложь
+bool isSquareMatrix(matrix m) {
+    return m.nRows == m.nCols;
+}
+
+// Возвращает значение истина, если матрицы m1 и m2 равны,
+// иначе - ложь
+bool isTwoMatricesAreEqual(matrix m1, matrix m2) {
+    long long nElementsFirstMatrix = (long long) m1.nRows * m1.nCols;
+    long long nElementsSecMatrix = (long long) m2.nRows * m2.nCols;
+    if (nElementsFirstMatrix != nElementsSecMatrix) return 0;
+    for (int rowInd = 0; rowInd < m1.nRows; rowInd++)
+        for (int colInd = 0; colInd < m1.nCols; colInd++)
+            if (m1.values[rowInd][colInd] != m2.values[rowInd][colInd])
+                return false;
+
+    return true;
+}
+
+// Возвращает значение истина, если матрица m единичная, иначе ложь
+bool isEMatrix(matrix m) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++) {
+            if (rowInd == colInd) {
+                if (m.values[rowInd][colInd] != 1) return false;
+            }
+            else if (m.values[rowInd][colInd] != 0)
+                return false;
+        }
+
+    return true;
+}
+
+// Возвращает значение истина, если матрица m является симметричной,
+// иначе - ложь
+bool isSymmetricMatrix(matrix m) {
+    int diagonalEl = m.values[0][0];
+    for (int rowInd = 0, colInd = 0; rowInd < m.nRows && colInd < m.nCols;
+        rowInd++, colInd++) {
+
+        if (rowInd == colInd && m.values[rowInd][colInd] != diagonalEl ||
+                m.values[rowInd][colInd] != m.values[colInd][rowInd])
+            return false;
+    }
+
+    return true;
 }
