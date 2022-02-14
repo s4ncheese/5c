@@ -26,4 +26,8 @@ void inputMatrices(matrix *mArray, int nMatrix);
 
 void outputMatrix(matrix m);
 
+void swapRows(matrix m, int row1, int row2);
+
+void swapColumns(matrix m, int col1, int col2);
+
 #endif

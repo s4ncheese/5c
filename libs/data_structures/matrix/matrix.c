@@ -1,6 +1,7 @@
 #include "matrix.h"
 #include <malloc.h>
 #include <stdio.h>
+#include "/../../algorithms/array/array.h"
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -65,4 +66,17 @@ void outputMatrices(matrix *mArray, int nMatrix) {
         outputMatrix(mArray[mInd]);
         printf("/n");
     }
+}
+
+// Обмен строк с порядковыми номерами row1 и row2 в матрице m
+void swapRows(matrix m, int row1, int row2) {
+    int *t = m.values[row1];
+    m.values[row1] = m.values[row2];
+    m.values[row2] = t;
+}
+
+// Обмен колонок с порядковыми номерами col1 и col2 в матрице m
+void swapColumns(matrix m, int col1, int col2) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        swap_(&m.values[rowInd][col1], &m.values[rowInd][col2]);
 }

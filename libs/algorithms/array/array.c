@@ -17,7 +17,7 @@ int absMin2_(const int a, const int b) {
     return abs(a) < abs(b) ? abs(a) : abs(b);
 }
 
-void swap_(long long *a, long long *b) {
+void swap_(int *a, int *b) {
     long long t = *a;
     *a = *b;
     *b = t;

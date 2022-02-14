@@ -14,7 +14,7 @@ long long max2_(long long a, long long b);
 int absMin2_(int a, int b);
 
 // Обменивает значения по адресам a и b
-void swap_(long long *a, long long *b);
+void swap_(int *a, int *b);
 
 // Обменивает вещественные значения по адресам a и b
 void dSwap_(double *a, double *b);
