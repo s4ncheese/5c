@@ -1,6 +1,7 @@
 #include "libs\data_structures\vectors\vector.h"
 #include "libs\data_structures\matrix\matrix.h"
 #include <assert.h>
+#include <stdio.h>
 
 #define ZERO_SIZE 0
 #define ONE_SIZE 1
@@ -236,7 +237,9 @@ int main() {
 //    test();
     matrix m = getMemMatrix(4, 4);
     inputMatrix(m);
-    bool isE = isSymmetricMatrix(m);
+    position p = getMinValuePos(m);
+
+    printf("{%d;%d}", p.rowIndex, p.colIndex);
 
     return 0;
 }

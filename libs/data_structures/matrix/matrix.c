@@ -2,7 +2,8 @@
 #include <malloc.h>
 #include <stdio.h>
 #include "../../algorithms/array/array.h"
-#include<stdbool.h>
+#include <stdbool.h>
+#include <assert.h>
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -82,12 +83,52 @@ void swapColumns(matrix m, int col1, int col2) {
         swap_(&m.values[rowInd][col1], &m.values[rowInd][col2]);
 }
 
-void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
 
+// Возвращает значение суммы элементов массива array
+// размера size
+int getSum(const int *array, const int size) {
+    int sum = 0;
+    for (int elementInd = 0; elementInd < size; elementInd++)
+        sum += array[elementInd];
+
+    return sum;
 }
 
-void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+// Выполняет сортировку вставками строк матрицы m по неубыванию
+// значения функции criteria, применяемой для строк
+void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
+    int *a = (int *) malloc(sizeof(int) * m.nRows);
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        a[rowInd] = criteria(m.values[rowInd], m.nCols);
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
+        int max = rowInd;
+        for (int j = rowInd; j < m.nRows; j++) {
+            if (a[j] > a[max])
+                max = j;
+        }
+        swap_(&a[max], &a[rowInd]);
+        swapRows(m, rowInd, max);
+    }
+}
 
+// Выполняет сортировку вставками строк матрицы m по неубыванию
+// значения функции criteria, применяемой для столбцов
+void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+    int *criteriaArr = (int *) malloc(sizeof(int) * m.nCols);
+    int *additionalArr = (int *) malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nCols; i++) {
+        for (int j = 0; j < m.nRows; j++)
+            additionalArr[j] = m.values[j][i];
+        criteriaArr[i] = criteria(additionalArr, m.nRows);
+    }
+    for (int i = 0; i < m.nCols; i++) {
+        for (int j = i; j > 0 && criteriaArr[j - 1] > criteriaArr[j]; j--) {
+            swap_(&criteriaArr[j - 1], &criteriaArr[j]);
+            swapColumns(m, j, j - 1);
+        }
+    }
+    free(criteriaArr);
+    free(additionalArr);
 }
 
 // Возвращает значение истина, если матрица m является квадратной,
@@ -116,8 +157,7 @@ bool isEMatrix(matrix m) {
         for (int colInd = 0; colInd < m.nCols; colInd++) {
             if (rowInd == colInd) {
                 if (m.values[rowInd][colInd] != 1) return false;
-            }
-            else if (m.values[rowInd][colInd] != 0)
+            } else if (m.values[rowInd][colInd] != 0)
                 return false;
         }
 
@@ -129,12 +169,76 @@ bool isEMatrix(matrix m) {
 bool isSymmetricMatrix(matrix m) {
     int diagonalEl = m.values[0][0];
     for (int rowInd = 0, colInd = 0; rowInd < m.nRows && colInd < m.nCols;
-        rowInd++, colInd++) {
+         rowInd++, colInd++) {
 
         if (rowInd == colInd && m.values[rowInd][colInd] != diagonalEl ||
-                m.values[rowInd][colInd] != m.values[colInd][rowInd])
+            m.values[rowInd][colInd] != m.values[colInd][rowInd])
             return false;
     }
 
     return true;
+}
+
+// Транспортирует квадратную матрицу m
+void transposeSquareMatrix(matrix m) {
+    assert(m.nRows == m.nCols);
+    for (int rowInd = 0; rowInd < m.nCols; rowInd++)
+        for (int colInd = rowInd + 1; colInd < m.nRows; colInd++)
+            swap_(&(m.values[rowInd][colInd]), &(m.values[colInd][rowInd]));
+}
+
+// Возвращает позицию первого минимального элемента матрицы m
+position getMinValuePos(matrix m) {
+    int min = m.values[0][0];
+    position minPos = {0, 0};
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            if (m.values[rowInd][colInd] < min) {
+                min = m.values[rowInd][colInd];
+                minPos = (position) {rowInd, colInd};
+            }
+
+    return minPos;
+}
+
+// Возвращает позицию первого максимального элемента матрицы m
+position getMaxValuePos(matrix m) {
+    int max = m.values[0][0];
+    position maxPos = {0, 0};
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            if (m.values[rowInd][colInd] > max) {
+                max = m.values[rowInd][colInd];
+                maxPos = (position) {rowInd, colInd};
+            }
+
+    return maxPos;
+}
+
+// Возвращает матрицу размера nRows на nCols, построенную из элементов
+//массива array
+matrix createMatrixFromArray(const int *array, int nRows, int nCols) {
+    matrix m = getMemMatrix(nRows, nCols);
+    int arrayInd = 0;
+
+    for (int rowInd = 0; rowInd < nRows; rowInd++)
+        for (int colInd = 0; colInd < nCols; colInd++)
+            m.values[rowInd][colInd] = array[arrayInd++];
+
+    return m;
+}
+
+// Возвращает указатель на нулевую матрицу массива из nMatrices
+// матриц, размещенных в динамической памяти, построенных из
+// элементов массива values
+matrix *createArrayOfMatrixFromArray(const int *values, int nMatrices,
+                                     int nRows, int nCols) {
+    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
+    int iWrite = 0;
+    for (int matrixInd = 0; matrixInd < nMatrices; matrixInd++)
+        for (int rowInd = 0; rowInd < nRows; rowInd++)
+            for (int colInd = 0; colInd < nCols; colInd++)
+                ms[matrixInd].values[rowInd][colInd] = values[iWrite++];
+
+    return ms;
 }

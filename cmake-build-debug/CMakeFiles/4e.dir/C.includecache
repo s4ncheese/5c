@@ -9,6 +9,10 @@
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
 stdbool.h
 -
+stdio.h
+-
+stdlib.h
+-
 
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.h
 stdlib.h
@@ -22,5 +26,7 @@ C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_str
 libs/data_structures/matrix/matrix.h
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
 assert.h
+-
+stdio.h
 -
 

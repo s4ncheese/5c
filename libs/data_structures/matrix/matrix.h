@@ -2,6 +2,8 @@
 #define INC_4E_MATRIX_H
 
 #include<stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct matrix {
     int **values;
@@ -43,5 +45,16 @@ bool isTwoMatricesAreEqual(matrix m1, matrix m2);
 bool isEMatrix(matrix m);
 
 bool isSymmetricMatrix(matrix m);
+
+void transposeSquareMatrix(matrix m);
+
+position getMinValuePos(matrix m);
+
+position getMaxValuePos(matrix m);
+
+matrix createMatrixFromArray(const int *, int nRows, int nCols);
+
+matrix *createArrayOfMatrixFromArray(const int *values, int nMatrices,
+                                     int nRows, int nCols);
 
 #endif

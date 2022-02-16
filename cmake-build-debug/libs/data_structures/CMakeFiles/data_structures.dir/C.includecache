@@ -21,8 +21,14 @@ stdio.h
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.h
 stdbool.h
 -
+assert.h
+-
 
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
 stdbool.h
+-
+stdio.h
+-
+stdlib.h
 -
 
