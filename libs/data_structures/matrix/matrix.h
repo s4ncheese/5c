@@ -36,6 +36,8 @@ void swapColumns(matrix m, int col1, int col2);
 
 int getSum(int *array, int size);
 
+int getMaxInRow(int *row, int nElements);
+
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));

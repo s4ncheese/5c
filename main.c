@@ -326,6 +326,10 @@ void firstTask(matrix m) {
     swapRows(m, maxPos.rowIndex, minPos.rowIndex);
 }
 
+void secondTask(matrix m) {
+    insertionSortRowsMatrixByRowCriteria(m, getMaxInRow);
+}
+
 int main() {
     test();
 
@@ -335,7 +339,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    firstTask(m);
+    secondTask(m);
 
     outputMatrix(m);
 

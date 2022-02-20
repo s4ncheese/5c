@@ -92,6 +92,15 @@ int getSum(int *array, int size) {
     return sum;
 }
 
+int getMaxInRow(int *row, int nElements) {
+    int max = row[0];
+    for (int elementInd = 0; elementInd < nElements; elementInd++)
+        if (row[elementInd] > max)
+            max = row[elementInd];
+
+    return max;
+}
+
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
