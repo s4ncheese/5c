@@ -3,243 +3,341 @@
 #include <assert.h>
 #include <stdio.h>
 
-#define ZERO_SIZE 0
-#define ONE_SIZE 1
-#define TEN_SIZE 10
-#define HUND_SIZE 100
-#define THOUS_SIZE 1000
+void test_swapRows_firstAndSecond() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    swapRows(m, 0, 1);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {4, 5, 6,
+                                                           1, 2, 3,
+                                                           7, 8, 9}, 3, 3);
+    bool isEqual = true;
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
+        for (int colInd = 0; colInd < m.nCols; colInd++) {
+            if (m.values[rowInd][colInd] != expectedMatrix.values[rowInd][colInd])
+                isEqual = false;
 
-/*--------------------------------------------------PUSH BACK EMPTY--------------------------------------------------*/
+            assert(isEqual == true);
+        }
+    }
 
-void test_pushBack_emptyVectorZeroSize() {
-    vector v = createVector(ZERO_SIZE);
-    int x = 193458;
-    pushBack(&v, x);
-
-    assert(v.size == 1);
-    assert(v.capacity == 1);
-    assert(v.data[0] == x);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
-void test_pushBack_emptyVectorHundSize() {
-    vector v = createVector(HUND_SIZE);
-    int x = 2402;
-    pushBack(&v, x);
+void test_swapRows_firstAndThird() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    swapRows(m, 1, 2);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {7, 8, 9,
+                                                           4, 5, 6,
+                                                           1, 2, 3}, 3, 3);
+    assert(m.nRows == expectedMatrix.nRows);
+    assert(m.nCols == expectedMatrix.nCols);
+    bool isEqual = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] == expectedMatrix.values[i][j])
+                isEqual = true;
+            else
+                isEqual = false;
+            assert(isEqual == 0);
+        }
+    }
 
-    assert(v.size == 1);
-    assert(v.capacity == HUND_SIZE);
-    assert(v.data[0] == x);
 
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
-/*------------------------------------------------PUSH BACK NOT EMPTY------------------------------------------------*/
+void test_swapColumns_firstAndSecond() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              1, 2, 3,
+                                              1, 2, 3}, 3, 3);
+    swapColumns(m, 0, 1);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {2, 1, 3,
+                                                           2, 1, 3,
+                                                           2, 1, 3}, 3, 3);
+    assert(m.nRows == expectedMatrix.nRows);
+    assert(m.nCols == expectedMatrix.nCols);
+    bool isEqual = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            isEqual = (bool) (m.values[i][j] == expectedMatrix.values[i][j]);
+            assert(isEqual == true);
+        }
+    }
 
-void test_pushBack_notEmptyThousSize() {
-    vector v = createVector(THOUS_SIZE);
-    v.size = TEN_SIZE;
-    int x = 2;
-    pushBack(&v, x);
-
-    assert(v.size == TEN_SIZE + 1);
-    assert(v.capacity == THOUS_SIZE);
-    assert(v.data[TEN_SIZE] == x);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
-void test_pushBack_notEmptyTenSize() {
-    vector v = createVector(TEN_SIZE);
-    v.size = TEN_SIZE - 1;
-    int x = 2549;
-    pushBack(&v, x);
+void test_swapCols_firstAndThird() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    swapColumns(m, 0, 2);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {3, 2, 1,
+                                                           6, 5, 4,
+                                                           9, 8, 7}, 3, 3);
+    assert(m.nRows == expectedMatrix.nRows);
+    assert(m.nCols == expectedMatrix.nCols);
+    bool isEqual = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            isEqual = (bool) (m.values[i][j] == expectedMatrix.values[i][j]);
+            assert(isEqual == true);
+        }
+    }
 
-    assert(isFull(&v));
-    assert(v.data[v.size - 1] == x);
-    assert(v.capacity == TEN_SIZE);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
-/*--------------------------------------------------PUSH BACK FULL---------------------------------------------------*/
+void test_isEMatrix() {
+    matrix m =
+            createMatrixFromArray((int[]) {1, 0, 0,
+                                           0, 1, 0,
+                                           0, 0, 1}, 3, 3);
+    assert(isEMatrix(m));
 
-void test_pushBack_fullZeroSize() {
-    vector v = createVector(ZERO_SIZE);
-    int x = 193458;
-    pushBack(&v, x);
-
-    assert(v.capacity == ZERO_SIZE + 1);
-    assert(v.size == 1);
-    assert(v.data[0] == x);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
 }
 
-void test_pushBack_fullThousSize() {
-    vector v = createVector(THOUS_SIZE);
-    v.size = THOUS_SIZE;
-    int x = 1;
-    pushBack(&v, x);
+void test_isSymmetricMatrix_Symmetric() {
+    matrix m = createMatrixFromArray((int[]) {1, 6, 10,
+                                              6, 1, 3,
+                                              10, 3, 1}, 3, 3);
+    assert(isSymmetricMatrix(m));
 
-    assert(v.capacity == THOUS_SIZE * 2);
-    assert(v.size == THOUS_SIZE + 1);
-    assert(v.data[v.size - 1] == x);
+    freeMemMatrix(m);
 }
 
-/*------------------------------------------------POP BACK NOT EMPTY-------------------------------------------------*/
+void test_isSymmetricMatrix_notSymmetric() {
+    matrix m = createMatrixFromArray((int[]) {1, 6, 10,
+                                              3, 1, 3,
+                                              10, 3, 1}, 3, 3);
+    assert(!isSymmetricMatrix(m));
 
-void test_popBack_notEmptyOneSize() {
-    vector v = createVector(ONE_SIZE);
-    v.size = ONE_SIZE;
-    popBack(&v);
-
-    assert(v.capacity == ONE_SIZE);
-    assert(v.size == ONE_SIZE - 1);
-    assert(v.data != NULL);
+    freeMemMatrix(m);
 }
 
-void test_popBack_notEmptyTenSize() {
-    vector v = createVector(TEN_SIZE);
-    v.size = TEN_SIZE;
-    popBack(&v);
+void test_transposeSquareMatrixFirstVer() {
+    matrix m = createMatrixFromArray((int[]) {1, 8, 4,
+                                              10, 9, 8,
+                                              3, 11, 2}, 3, 3);
+    transposeSquareMatrix(m);
+    matrix answerMatrix = createMatrixFromArray((int[]) {1, 10, 3,
+                                                         8, 9, 11,
+                                                         4, 8, 2}, 3, 3);
 
-    assert(v.capacity == TEN_SIZE);
-    assert(v.size == TEN_SIZE - 1);
+    assert(isTwoMatricesAreEqual(m, answerMatrix) == 1);
+
+    freeMemMatrix(m);
+    freeMemMatrix(answerMatrix);
 }
 
-void test_popBack_notEmptyZeroSize() {
-    vector v = createVector(ZERO_SIZE);
-    int x = 10;
-    pushBack(&v, x);
+void test_transposeSquareMatrixSecVer() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    transposeSquareMatrix(m);
+    matrix answerMatrix = createMatrixFromArray((int[]) {1, 4, 7,
+                                                         2, 5, 8,
+                                                         3, 6, 9}, 3, 3);
 
-    assert(v.size == 1);
-    popBack(&v);
-    assert(v.size == 0);
-    assert(v.capacity == 1);
+    assert(isTwoMatricesAreEqual(m, answerMatrix) == 1);
 
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(answerMatrix);
 }
 
-/*------------------------------------------------AT NOT EMPTY VECTOR------------------------------------------------*/
+void test_getMinValuePosFirstVer() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    position expectedMinPos = (position) {0, 0};
+    position minPos = getMinValuePos(m);
+    assert(minPos.rowIndex == expectedMinPos.rowIndex);
+    assert(minPos.colIndex == expectedMinPos.colIndex);
 
-void test_atVector_notEmptyVectorVar1() {
-    vector v = createVector(TEN_SIZE);
-    v.size = v.capacity;
-    for (size_t i = 0; i < v.size; i++)
-        assert(*atVector(&v, i) == v.data[i]);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
 }
 
-void test_atVector_notEmptyVectorVar2() {
-    vector v = createVector(HUND_SIZE);
-    v.size = v.capacity;
+void test_getMinValuePosSecVer() {
+    matrix m = createMatrixFromArray((int[]) {12, 4, 0,
+                                              32, -1, 11,
+                                              7, 4, -1}, 3, 3);
+    position expectedMinPos = (position) {1, 1};
+    position minPos = getMinValuePos(m);
+    assert(minPos.rowIndex == expectedMinPos.rowIndex);
+    assert(minPos.colIndex == expectedMinPos.colIndex);
 
-    for (size_t i = 0; i < v.size; i++)
-        assert(*atVector(&v, i) == v.data[i]);
-
-    deleteVector(&v);
-
+    freeMemMatrix(m);
 }
 
-/*----------------------------------------------REQUEST TO LAST ELEMENT----------------------------------------------*/
+void test_getMaxValuePosFirstVer() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9}, 3, 3);
+    position expectedMaxPos = (position) {2, 2};
+    position maxPos = getMaxValuePos(m);
+    assert(maxPos.rowIndex == expectedMaxPos.rowIndex);
+    assert(maxPos.colIndex == expectedMaxPos.colIndex);
 
-void test_atVector_requestToLastElementVar1() {
-    vector v = createVector(TEN_SIZE);
-    v.size = v.capacity;
-
-    assert(*atVector(&v, v.size - 1) == v.data[v.size - 1]);
-
-    deleteVector(&v);
-
+    freeMemMatrix(m);
 }
 
-void test_atVector_requestToLastElementVar2() {
-    vector v = createVector(ONE_SIZE);
-    v.size = v.capacity;
+void test_getMaxValuePosSecVer() {
+    matrix m = createMatrixFromArray((int[]) {-45, -99, -3,
+                                              -5, -7, 0,
+                                              -11, -2, 0}, 3, 3);
+    position expectedMaxPos = (position) {1, 2};
+    position maxPos = getMaxValuePos(m);
+    assert(maxPos.rowIndex == expectedMaxPos.rowIndex);
+    assert(maxPos.colIndex == expectedMaxPos.colIndex);
 
-    assert(*atVector(&v, v.size - 1) == v.data[v.size - 1]);
-
-    deleteVector(&v);
+    freeMemMatrix(m);
 }
 
-/*--------------------------------------------------BACK ONE ELEMENT-------------------------------------------------*/
+void test_insertionSortRows_firstVer() {
+    matrix m = createMatrixFromArray((int[]) {7, 8, 9,
+                                              4, 5, 6,
+                                              1, 2, 3}, 3, 3);
+    insertionSortRowsMatrixByRowCriteria(m, getSum);
 
-void test_back_oneElementVer1() {
-    vector v = createVector(ONE_SIZE);
-    v.size = v.capacity;
+    matrix answerM = createMatrixFromArray((int[]) {1, 2, 3,
+                                                    4, 5, 6,
+                                                    7, 8, 9}, 3, 3);
 
-    assert(*back(&v) == v.data[v.size - 1]);
+    assert(isTwoMatricesAreEqual(m, answerM) == true);
 
-    deleteVector(&v);
+    freeMemMatrix(m);
+    freeMemMatrix(answerM);
 }
 
-void test_back_oneElementVer2() {
-    vector v = createVector(ONE_SIZE);
-    v.size = v.capacity;
+void test_insertionSortRows_secVer() {
+    matrix m = createMatrixFromArray((int[]) {-1, 3, 45,
+                                              0, 9, 2,
+                                              5, 7, -11}, 3, 3);
 
-    assert(*back(&v) == v.data[v.size - 1]);
+    insertionSortRowsMatrixByRowCriteria(m, getSum);
 
-    deleteVector(&v);
+    matrix answerM = createMatrixFromArray((int[]) {5, 7, -11,
+                                                    0, 9, 2,
+                                                    -1, 3, 45}, 3, 3);
+
+    assert(isTwoMatricesAreEqual(m, answerM));
+
+    freeMemMatrix(m);
+    freeMemMatrix(answerM);
 }
 
-/*----------------------------------------------------FINAL TESTS----------------------------------------------------*/
+void test_selectionSortCols_firstVer() {
+    matrix m = createMatrixFromArray((int[]) {1, 3, 2,
+                                              4, 6, 5,
+                                              7, 9, 8}, 3, 3);
 
-void test_pushBack_emptyVector() {
-    test_pushBack_emptyVectorZeroSize();
-    test_pushBack_emptyVectorHundSize();
+    selectionSortColsMatrixByColCriteria(m, getSum);
+
+    matrix answerM = createMatrixFromArray((int[]) {1, 2, 3,
+                                                    4, 5, 6,
+                                                    7, 8, 9}, 3, 3);
+
+    assert(isTwoMatricesAreEqual(m, answerM));
+
+    freeMemMatrix(m);
+    freeMemMatrix(answerM);
 }
 
-void test_pushBack_notEmpty() {
-    test_pushBack_notEmptyThousSize();
-    test_pushBack_notEmptyTenSize();
+void test_selectionSortCols_secVer() {
+    matrix m = createMatrixFromArray((int[]) {-1, 8, 14,
+                                              0, 2, 5,
+                                              42, 51, -4}, 3, 3);
+
+    selectionSortColsMatrixByColCriteria(m, getSum);
+
+    matrix answerM = createMatrixFromArray((int[]) {14, -1, 8,
+                                                    5, 0, 2,
+                                                    -4, 42, 51}, 3, 3);
+
+    assert(isTwoMatricesAreEqual(m, answerM));
+
+    freeMemMatrix(m);
+    freeMemMatrix(answerM);
 }
 
-void test_pushBack_full() {
-    test_pushBack_fullZeroSize();
-    test_pushBack_fullThousSize();
+void test_swapRows() {
+    test_swapRows_firstAndSecond();
+    test_swapRows_firstAndThird();
 }
 
-void test_popBack() {
-    test_popBack_notEmptyOneSize();
-    test_popBack_notEmptyTenSize();
-    test_popBack_notEmptyZeroSize();
+void test_swapCols() {
+    test_swapColumns_firstAndSecond();
+    test_swapCols_firstAndThird();
 }
 
-void test_atVector_notEmptyVector() {
-    test_atVector_notEmptyVectorVar1();
-    test_atVector_notEmptyVectorVar2();
+void test_isSymmetricMatrix() {
+    test_isSymmetricMatrix_Symmetric();
+    test_isSymmetricMatrix_notSymmetric();
 }
 
-void test_back_oneElementInVector() {
-    test_back_oneElementVer1();
-    test_back_oneElementVer2();
+void test_transpose() {
+    test_transposeSquareMatrixFirstVer();
+    test_transposeSquareMatrixSecVer();
 }
 
-void test_atVector_requestToLastElement() {
-    test_atVector_requestToLastElementVar1();
-    test_atVector_requestToLastElementVar2();
+void test_getMinPos() {
+    test_getMinValuePosFirstVer();
+    test_getMinValuePosSecVer();
+}
+
+void test_getMaxPos() {
+    test_getMaxValuePosFirstVer();
+    test_getMaxValuePosSecVer();
+}
+
+void test_insertionSortRows() {
+    test_insertionSortRows_firstVer();
+    test_insertionSortRows_secVer();
+}
+
+void test_selectionSortCols() {
+    test_selectionSortCols_firstVer();
+    test_selectionSortCols_secVer();
 }
 
 void test() {
-    test_atVector_requestToLastElement();
-    test_atVector_notEmptyVector();
-    test_back_oneElementInVector();
-    test_pushBack_emptyVector();
-    test_pushBack_notEmpty();
-    test_pushBack_full();
-    test_popBack();
+    test_swapRows();
+    test_swapCols();
+    test_isEMatrix();
+    test_isSymmetricMatrix();
+    test_transpose();
+    test_getMinPos();
+    test_getMaxPos();
+    test_insertionSortRows();
+    test_selectionSortCols();
+}
+
+void firstTask(matrix m) {
+    position maxPos = getMaxValuePos(m);
+    position minPos = getMinValuePos(m);
+    swapRows(m, maxPos.rowIndex, minPos.rowIndex);
 }
 
 int main() {
-//    test();
-    matrix m = getMemMatrix(4, 4);
-    inputMatrix(m);
-    position p = getMinValuePos(m);
+    test();
 
-    printf("{%d;%d}", p.rowIndex, p.colIndex);
+    int nRows, nCols;
+    scanf("%d %d", &nRows, &nCols);
+
+    matrix m = getMemMatrix(nRows, nCols);
+    inputMatrix(m);
+
+    firstTask(m);
+
+    outputMatrix(m);
 
     return 0;
 }

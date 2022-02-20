@@ -34,9 +34,11 @@ void swapRows(matrix m, int row1, int row2);
 
 void swapColumns(matrix m, int col1, int col2);
 
+int getSum(int *array, int size);
+
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
 
-void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
 
 bool isSquareMatrix(matrix m);
 

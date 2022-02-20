@@ -4,6 +4,7 @@
 #include "../../algorithms/array/array.h"
 #include <stdbool.h>
 #include <assert.h>
+#include <memory.h>
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -83,13 +84,10 @@ void swapColumns(matrix m, int col1, int col2) {
         swap_(&m.values[rowInd][col1], &m.values[rowInd][col2]);
 }
 
-
-// Возвращает значение суммы элементов массива array
-// размера size
-int getSum(const int *array, const int size) {
+int getSum(int *array, int size) {
     int sum = 0;
-    for (int elementInd = 0; elementInd < size; elementInd++)
-        sum += array[elementInd];
+    for (int i = 0; i < size; i++)
+        sum += array[i];
 
     return sum;
 }
@@ -97,23 +95,24 @@ int getSum(const int *array, const int size) {
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
-    int *a = (int *) malloc(sizeof(int) * m.nRows);
-    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
-        a[rowInd] = criteria(m.values[rowInd], m.nCols);
-    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
-        int max = rowInd;
-        for (int j = rowInd; j < m.nRows; j++) {
-            if (a[j] > a[max])
-                max = j;
+    int *array = (int *) malloc(sizeof(int) * m.nRows);
+    for (int i = 0; i < m.nRows; i++)
+        array[i] = criteria(m.values[i], m.nCols);
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nRows; j++) {
+            if (array[j] >= array[i]) {
+                swap_(&array[j], &array[i]);
+                swapRows(m, j, i);
+            }
         }
-        swap_(&a[max], &a[rowInd]);
-        swapRows(m, rowInd, max);
     }
+
+    free(array);
 }
 
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для столбцов
-void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
     int *criteriaArr = (int *) malloc(sizeof(int) * m.nCols);
     int *additionalArr = (int *) malloc(sizeof(int) * m.nRows);
     for (int i = 0; i < m.nCols; i++) {
@@ -140,13 +139,11 @@ bool isSquareMatrix(matrix m) {
 // Возвращает значение истина, если матрицы m1 и m2 равны,
 // иначе - ложь
 bool isTwoMatricesAreEqual(matrix m1, matrix m2) {
-    long long nElementsFirstMatrix = (long long) m1.nRows * m1.nCols;
-    long long nElementsSecMatrix = (long long) m2.nRows * m2.nCols;
-    if (nElementsFirstMatrix != nElementsSecMatrix) return 0;
+    if (m1.nRows != m2.nRows || m1.nCols != m2.nCols) return false;
     for (int rowInd = 0; rowInd < m1.nRows; rowInd++)
-        for (int colInd = 0; colInd < m1.nCols; colInd++)
-            if (m1.values[rowInd][colInd] != m2.values[rowInd][colInd])
-                return false;
+        if (memcmp(m1.values[rowInd], m2.values[rowInd],
+                   m1.nCols * sizeof(int)) != 0)
+            return false;
 
     return true;
 }
@@ -168,7 +165,7 @@ bool isEMatrix(matrix m) {
 // иначе - ложь
 bool isSymmetricMatrix(matrix m) {
     int diagonalEl = m.values[0][0];
-    for (int rowInd = 0, colInd = 0; rowInd < m.nRows && colInd < m.nCols;
+    for (int rowInd = 0, colInd = rowInd + 1; rowInd < m.nRows && colInd < m.nCols;
          rowInd++, colInd++) {
 
         if (rowInd == colInd && m.values[rowInd][colInd] != diagonalEl ||
@@ -181,6 +178,10 @@ bool isSymmetricMatrix(matrix m) {
 
 // Транспортирует квадратную матрицу m
 void transposeSquareMatrix(matrix m) {
+    if (m.nRows != m.nCols) {
+        fprintf(stderr, "Matrix is not square");
+        exit(1);
+    }
     assert(m.nRows == m.nCols);
     for (int rowInd = 0; rowInd < m.nCols; rowInd++)
         for (int colInd = rowInd + 1; colInd < m.nRows; colInd++)
