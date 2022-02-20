@@ -40,6 +40,8 @@ int getMaxInRow(int *row, int nElements);
 
 int getMinInCol(int *col, int nElements);
 
+matrix mulMatrices(matrix m1, matrix m2);
+
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));

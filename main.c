@@ -105,11 +105,21 @@ void test_isEMatrix() {
     freeMemMatrix(m);
 }
 
-void test_isSymmetricMatrix_Symmetric() {
+void test_isSymmetricMatrix_symmetricVer1() {
     matrix m = createMatrixFromArray((int[]) {1, 6, 10,
                                               6, 1, 3,
                                               10, 3, 1}, 3, 3);
     assert(isSymmetricMatrix(m));
+
+    freeMemMatrix(m);
+}
+
+void test_isSymmetricMatrix_symmetricVer2() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              2, 4, 0,
+                                              3, 0, 2}, 3, 3);
+
+    assert(isSymmetricMatrix(m) == true);
 
     freeMemMatrix(m);
 }
@@ -279,7 +289,7 @@ void test_swapCols() {
 }
 
 void test_isSymmetricMatrix() {
-    test_isSymmetricMatrix_Symmetric();
+    test_isSymmetricMatrix_symmetricVer1();
     test_isSymmetricMatrix_notSymmetric();
 }
 
@@ -334,6 +344,12 @@ void thirdTask(matrix m) {
     selectionSortColsMatrixByColCriteria(m, getMinInCol);
 }
 
+void fourthTask(matrix *m) {
+    if (isSymmetricMatrix(*m)) {
+        *m = mulMatrices(*m, *m);
+    }
+}
+
 int main() {
     test();
 
@@ -343,7 +359,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    thirdTask(m);
+    fourthTask(&m);
 
     outputMatrix(m);
 

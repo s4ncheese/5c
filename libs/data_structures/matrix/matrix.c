@@ -110,6 +110,23 @@ int getMinInCol(int *col, int nElements) {
     return min;
 }
 
+// Возвращает матрицу - произведение матриц m1 и m2
+matrix mulMatrices(matrix m1, matrix m2) {
+    if (m1.nCols != m2.nRows)
+        fprintf(stderr, "Matrices can't be multiplied");
+
+    matrix mul = getMemMatrix(m1.nRows, m2.nCols);
+    for (int rowInd = 0; rowInd < m1.nRows; rowInd++)
+        for (int colInd = 0; colInd < m2.nCols; colInd++) {
+            mul.values[rowInd][colInd] = 0;
+            for (int i = 0; i < m1.nCols; i++)
+                mul.values[rowInd][colInd] += m1.values[rowInd][i] *
+                                              m2.values[i][colInd];
+        }
+
+    return mul;
+}
+
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
@@ -182,6 +199,8 @@ bool isEMatrix(matrix m) {
 // Возвращает значение истина, если матрица m является симметричной,
 // иначе - ложь
 bool isSymmetricMatrix(matrix m) {
+    if (!isSquareMatrix(m))
+        return false;
     int diagonalEl = m.values[0][0];
     for (int rowInd = 0, colInd = rowInd + 1; rowInd < m.nRows && colInd < m.nCols;
          rowInd++, colInd++) {
