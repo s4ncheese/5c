@@ -38,6 +38,8 @@ int getSum(int *array, int size);
 
 int getMaxInRow(int *row, int nElements);
 
+int getMinInCol(int *col, int nElements);
+
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));

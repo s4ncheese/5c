@@ -101,6 +101,15 @@ int getMaxInRow(int *row, int nElements) {
     return max;
 }
 
+int getMinInCol(int *col, int nElements) {
+    int min = col[0];
+    for (int colInd = 0; colInd < nElements; colInd++)
+        if (col[colInd] < min)
+            min = col[colInd];
+
+    return min;
+}
+
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
 void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {

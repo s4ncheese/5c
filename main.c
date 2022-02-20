@@ -330,6 +330,10 @@ void secondTask(matrix m) {
     insertionSortRowsMatrixByRowCriteria(m, getMaxInRow);
 }
 
+void thirdTask(matrix m) {
+    selectionSortColsMatrixByColCriteria(m, getMinInCol);
+}
+
 int main() {
     test();
 
@@ -339,7 +343,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    secondTask(m);
+    thirdTask(m);
 
     outputMatrix(m);
 
