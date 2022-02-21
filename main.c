@@ -365,18 +365,31 @@ void fifthTask(matrix m) {
 
 }
 
+bool sixthTask(matrix m1, matrix m2) {
+    if (m1.nRows != m2.nRows || m1.nCols != m2.nCols)
+        return false;
+
+    return isEMatrix(mulMatrices(m1, m2));
+}
+
 int main() {
     test();
 
     int nRows, nCols;
     scanf("%d %d", &nRows, &nCols);
 
-    matrix m = getMemMatrix(nRows, nCols);
-    inputMatrix(m);
+    matrix m1 = getMemMatrix(nRows, nCols);
+    inputMatrix(m1);
 
-    fifthTask(m);
+    int nRows1, nCols1;
+    scanf("%d %d", &nRows1, &nCols1);
 
-    outputMatrix(m);
+    matrix m2 = getMemMatrix(nRows1, nCols1);
+    inputMatrix(m2);
+
+    sixthTask(m1, m2);
+
+    outputMatrix(m1);
 
     return 0;
 }
