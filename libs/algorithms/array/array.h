@@ -10,6 +10,8 @@
 // Возвращает максимальное из чисел a и b
 long long max2_(long long a, long long b);
 
+int min2_(int a, int b);
+
 // Возвращает минимальное из чисел a и b
 int absMin2_(int a, int b);
 

@@ -392,6 +392,26 @@ long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
     return getSum(arrayOfMaxesOfPseudoDiagonals, size);
 }
 
+int getMinInArea(matrix m) {
+    position maxPos = getMaxValuePos(m);
+    int min = m.values[maxPos.rowIndex][maxPos.colIndex];
+    int col = maxPos.colIndex;
+    int row = maxPos.rowIndex;
+    for (int rowInd = maxPos.rowIndex - 1; rowInd >= 0; rowInd--) {
+        if (col - 1 >= 0)
+            col--;
+        if (row + 1 < m.nCols)
+            row++;
+        int noFantasy = row;
+        while (noFantasy >= col) {
+            min = min2_(min, m.values[rowInd][noFantasy]);
+            noFantasy--;
+        }
+    }
+
+    return min;
+}
+
 int main() {
     test();
 
@@ -401,7 +421,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    printf("%lld", findSumOfMaxesOfPseudoDiagonal(m));
+    printf("%d", getMinInArea(m));
 
     return 0;
 }

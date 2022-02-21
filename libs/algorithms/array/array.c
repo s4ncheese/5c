@@ -13,6 +13,10 @@ long long max2_(const long long a, const long long b) {
     return a > b ? a : b;
 }
 
+int min2_(int a, int b) {
+    return a < b ? a : b;
+}
+
 int absMin2_(const int a, const int b) {
     return abs(a) < abs(b) ? abs(a) : abs(b);
 }

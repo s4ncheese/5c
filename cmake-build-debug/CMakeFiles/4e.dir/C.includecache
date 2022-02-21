@@ -6,6 +6,20 @@
 
 #IncludeRegexTransform: 
 
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.c
+stdio.h
+-
+limits.h
+-
+assert.h
+-
+math.h
+-
+array.h
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.h
+stdbool.h
+-
+
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.h
 stddef.h
 -
