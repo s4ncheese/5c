@@ -34,7 +34,7 @@ void swapRows(matrix m, int row1, int row2);
 
 void swapColumns(matrix m, int col1, int col2);
 
-int getSum(int *array, int size);
+long long getSum(int *array, int size);
 
 int getMaxInRow(int *row, int nElements);
 
@@ -53,6 +53,8 @@ bool isTwoMatricesAreEqual(matrix m1, matrix m2);
 bool isEMatrix(matrix m);
 
 bool isSymmetricMatrix(matrix m);
+
+bool isUnique(long long *array, int size);
 
 void transposeSquareMatrix(matrix m);
 

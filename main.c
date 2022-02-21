@@ -350,6 +350,21 @@ void fourthTask(matrix *m) {
     }
 }
 
+void fifthTask(matrix m) {
+    if (m.nRows != m.nCols) {
+        fprintf(stderr, "Is not square matrix");
+        exit(1);
+    }
+
+    long long *sumArray = (long long *) malloc(sizeof(long long) * m.nRows);
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        sumArray[rowInd] = getSum(m.values[rowInd], m.nCols);
+
+    if (isUnique(sumArray, m.nRows))
+        transposeSquareMatrix(m);
+
+}
+
 int main() {
     test();
 
@@ -359,7 +374,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    fourthTask(&m);
+    fifthTask(m);
 
     outputMatrix(m);
 

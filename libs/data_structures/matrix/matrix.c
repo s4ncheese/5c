@@ -84,7 +84,7 @@ void swapColumns(matrix m, int col1, int col2) {
         swap_(&m.values[rowInd][col1], &m.values[rowInd][col2]);
 }
 
-int getSum(int *array, int size) {
+long long getSum(int *array, int size) {
     int sum = 0;
     for (int i = 0; i < size; i++)
         sum += array[i];
@@ -112,9 +112,10 @@ int getMinInCol(int *col, int nElements) {
 
 // Возвращает матрицу - произведение матриц m1 и m2
 matrix mulMatrices(matrix m1, matrix m2) {
-    if (m1.nCols != m2.nRows)
+    if (m1.nCols != m2.nRows) {
         fprintf(stderr, "Matrices can't be multiplied");
-
+        exit(1);
+    }
     matrix mul = getMemMatrix(m1.nRows, m2.nCols);
     for (int rowInd = 0; rowInd < m1.nRows; rowInd++)
         for (int colInd = 0; colInd < m2.nCols; colInd++) {
@@ -125,6 +126,24 @@ matrix mulMatrices(matrix m1, matrix m2) {
         }
 
     return mul;
+}
+
+int searchSum(long long *array, int size, int el) {
+    for (int i = 0; i < size; i++)
+        if (array[i] == el)
+            return i;
+
+    return size;
+}
+
+bool isUnique(long long *array, int size) {
+    for (int i = 0; i < size; i++) {
+        int sumPos = searchSum(array, size, array[i]);
+        if (sumPos != i && sumPos != size)
+            return false;
+    }
+
+    return true;
 }
 
 // Выполняет сортировку вставками строк матрицы m по неубыванию
