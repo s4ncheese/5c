@@ -36,15 +36,15 @@ void swapColumns(matrix m, int col1, int col2);
 
 long long getSum(int *array, int size);
 
-int getMaxInRow(int *row, int nElements);
+long long getMaxInRow(int *row, int nElements);
 
-int getMinInCol(int *col, int nElements);
+long long getMinInCol(int *col, int nElements);
 
 matrix mulMatrices(matrix m1, matrix m2);
 
-void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int));
+void insertionSortRowsMatrixByRowCriteria(matrix m, long long (*criteria)(int *, int));
 
-void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int));
+void selectionSortColsMatrixByColCriteria(matrix m, long long (*criteria)(int *, int));
 
 bool isSquareMatrix(matrix m);
 

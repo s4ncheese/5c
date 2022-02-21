@@ -10,6 +10,7 @@ CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj: \
  ../libs/data_structures/bitset/bitset.c \
  ../libs/data_structures/bitset/bitset.h
 CMakeFiles/4e.dir/main.c.obj: \
+ ../libs/algorithms/array/array.h \
  ../libs/data_structures/matrix/matrix.h \
  ../libs/data_structures/vectors/vector.h \
  ../main.c

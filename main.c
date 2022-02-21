@@ -1,5 +1,6 @@
 #include "libs\data_structures\vectors\vector.h"
 #include "libs\data_structures\matrix\matrix.h"
+#include "libs\algorithms\array\array.h"
 #include <assert.h>
 #include <stdio.h>
 
@@ -372,24 +373,35 @@ bool sixthTask(matrix m1, matrix m2) {
     return isEMatrix(mulMatrices(m1, m2));
 }
 
+long long findSumOfMaxesOfPseudoDiagonal(matrix m) {
+    size_t size = m.nRows + m.nCols - 1;
+    int arrayOfMaxesOfPseudoDiagonals[size];
+    for (int i = 0; i < size; i++)
+        arrayOfMaxesOfPseudoDiagonals[i] = 0;
+
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++) {
+            if (rowInd != colInd) {
+                int pseudoDiagonalNumber = colInd - rowInd + 2;
+                arrayOfMaxesOfPseudoDiagonals[pseudoDiagonalNumber] =
+                        max2_(arrayOfMaxesOfPseudoDiagonals[pseudoDiagonalNumber],
+                              m.values[rowInd][colInd]);
+            }
+        }
+
+    return getSum(arrayOfMaxesOfPseudoDiagonals, size);
+}
+
 int main() {
     test();
 
     int nRows, nCols;
     scanf("%d %d", &nRows, &nCols);
 
-    matrix m1 = getMemMatrix(nRows, nCols);
-    inputMatrix(m1);
+    matrix m = getMemMatrix(nRows, nCols);
+    inputMatrix(m);
 
-    int nRows1, nCols1;
-    scanf("%d %d", &nRows1, &nCols1);
-
-    matrix m2 = getMemMatrix(nRows1, nCols1);
-    inputMatrix(m2);
-
-    sixthTask(m1, m2);
-
-    outputMatrix(m1);
+    printf("%lld", findSumOfMaxesOfPseudoDiagonal(m));
 
     return 0;
 }

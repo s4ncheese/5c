@@ -1,5 +1,4 @@
 #include "matrix.h"
-#include <malloc.h>
 #include <stdio.h>
 #include "../../algorithms/array/array.h"
 #include <stdbool.h>
@@ -92,7 +91,7 @@ long long getSum(int *array, int size) {
     return sum;
 }
 
-int getMaxInRow(int *row, int nElements) {
+long long getMaxInRow(int *row, int nElements) {
     int max = row[0];
     for (int elementInd = 0; elementInd < nElements; elementInd++)
         if (row[elementInd] > max)
@@ -101,7 +100,7 @@ int getMaxInRow(int *row, int nElements) {
     return max;
 }
 
-int getMinInCol(int *col, int nElements) {
+long long getMinInCol(int *col, int nElements) {
     int min = col[0];
     for (int colInd = 0; colInd < nElements; colInd++)
         if (col[colInd] < min)
@@ -148,7 +147,7 @@ bool isUnique(long long *array, int size) {
 
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
-void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
+void insertionSortRowsMatrixByRowCriteria(matrix m, long long (*criteria)(int *, int)) {
     int *array = (int *) malloc(sizeof(int) * m.nRows);
     for (int i = 0; i < m.nRows; i++)
         array[i] = criteria(m.values[i], m.nCols);
@@ -166,7 +165,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
 
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для столбцов
-void selectionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int)) {
+void selectionSortColsMatrixByColCriteria(matrix m, long long (*criteria)(int *, int)) {
     int *criteriaArr = (int *) malloc(sizeof(int) * m.nCols);
     int *additionalArr = (int *) malloc(sizeof(int) * m.nRows);
     for (int i = 0; i < m.nCols; i++) {
