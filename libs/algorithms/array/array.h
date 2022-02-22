@@ -21,6 +21,8 @@ void swap_(int *a, int *b);
 // Обменивает вещественные значения по адресам a и b
 void dSwap_(double *a, double *b);
 
+void fSwap_(float *a, float *b);
+
 // Ввод массива array размера size
 void inputArray_(long long *array, size_t size);
 
@@ -55,7 +57,7 @@ void deleteBySavePosOrder_(long long *array, size_t *size, size_t pos);
 
 // Удаление элемента на позиции pos в массиве array размера size
 // без сохранения порядка элементов
-void deleteByUnsavePosOrder_(long long *array, size_t *size, size_t pos);
+void deleteByUnsavePosOrder_(int *array, size_t *size, size_t pos);
 
 // Возвращает значение 'истина', если все элементы массива
 // array размера size удовлетворяют функции - предикату

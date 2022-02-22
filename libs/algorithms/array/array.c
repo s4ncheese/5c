@@ -33,6 +33,12 @@ void dSwap_(double *a, double *b) {
     *b = t;
 }
 
+void fSwap_(float *a, float *b) {
+    float t = *a;
+    *a = *b;
+    *b = t;
+}
+
 void inputArray_(long long *array, const size_t size) {
     for (size_t i = 0; i < size; i++)
         scanf("%lld", &array[i]);
@@ -110,7 +116,7 @@ void deleteBySavePosOrder_(long long *array, size_t *size, const size_t pos) {
     (*size)--;
 }
 
-void deleteByUnsavePosOrder_(long long *array, size_t *size, const size_t pos) {
+void deleteByUnsavePosOrder_(int *array, size_t *size, const size_t pos) {
     swap_(&array[pos], &array[*size - 1]);
     (*size)--;
 }

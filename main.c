@@ -412,6 +412,10 @@ int getMinInArea(matrix m) {
     return min;
 }
 
+void sortByDistances(matrix m) {
+    insertionSortRowsMatrixByRowCritetiaF(m, getDistance);
+}
+
 int main() {
     test();
 
@@ -421,7 +425,9 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    printf("%d", getMinInArea(m));
+    sortByDistances(m);
+
+    outputMatrix(m);
 
     return 0;
 }

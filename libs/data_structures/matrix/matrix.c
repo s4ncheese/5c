@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <memory.h>
+#include <math.h>
 
 // Возвращает матрицу размером nRows на nCols, размещенную в
 // динамической памяти
@@ -127,6 +128,14 @@ matrix mulMatrices(matrix m1, matrix m2) {
     return mul;
 }
 
+float getDistance(int *a, int n) {
+    float dist = 0;
+    for (int i = 0; i < n; i++)
+        dist += (float)(a[i] * a[i]);
+
+    return sqrtf(dist);
+}
+
 int searchSum(long long *array, int size, int el) {
     for (int i = 0; i < size; i++)
         if (array[i] == el)
@@ -145,12 +154,28 @@ bool isUnique(long long *array, int size) {
     return true;
 }
 
+void insertionSortRowsMatrixByRowCritetiaF(matrix m, float (*criteria)(int *, int)) {
+    float criteriaArray[m.nRows];
+     for (int i = 0; i < m.nRows; i++)
+         criteriaArray[i] = criteria(m.values[i], m.nCols);
+
+     for (int i = 0; i < m.nRows; i++) {
+         for (int j = 0; j < m.nRows; j++) {
+             if (criteriaArray[j] >= criteriaArray[i]) {
+                 fSwap_(&criteriaArray[j], &criteriaArray[i]);
+                 swapRows(m, j, i);
+             }
+         }
+     }
+}
+
 // Выполняет сортировку вставками строк матрицы m по неубыванию
 // значения функции criteria, применяемой для строк
 void insertionSortRowsMatrixByRowCriteria(matrix m, long long (*criteria)(int *, int)) {
     int *array = (int *) malloc(sizeof(int) * m.nRows);
     for (int i = 0; i < m.nRows; i++)
         array[i] = criteria(m.values[i], m.nCols);
+
     for (int i = 0; i < m.nRows; i++) {
         for (int j = 0; j < m.nRows; j++) {
             if (array[j] >= array[i]) {

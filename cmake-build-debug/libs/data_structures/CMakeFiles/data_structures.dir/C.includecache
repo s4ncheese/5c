@@ -23,6 +23,8 @@ assert.h
 -
 memory.h
 -
+math.h
+-
 
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
 stdbool.h

@@ -42,6 +42,10 @@ long long getMinInCol(int *col, int nElements);
 
 matrix mulMatrices(matrix m1, matrix m2);
 
+float getDistance(int *a, int n);
+
+void insertionSortRowsMatrixByRowCritetiaF(matrix m, float (*criteria)(int *, int));
+
 void insertionSortRowsMatrixByRowCriteria(matrix m, long long (*criteria)(int *, int));
 
 void selectionSortColsMatrixByColCriteria(matrix m, long long (*criteria)(int *, int));
