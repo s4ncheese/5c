@@ -444,6 +444,24 @@ int getNSpecialElements(matrix m) {
 
 }
 
+position getLeftMin(matrix m) {
+    return (position) getMinValuePos(m);
+}
+
+void swapPenultimateRow(matrix m, int n) {
+    if (m.nRows < 2) {
+        fprintf(stderr, "It is impossible to swap");
+        exit(1);
+    }
+
+    int col[m.nRows];
+    position minPos = getLeftMin(m);
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        col[rowInd] = m.values[rowInd][minPos.colIndex];
+
+    memcpy(m.values[m.nRows - 2], col, m.nCols * sizeof(int));
+}
+
 int main() {
     test();
 
@@ -453,7 +471,9 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    printf("%d", getNSpecialElements(m));
+    swapPenultimateRow(m, m.nRows);
+
+    outputMatrix(m);
 
     return 0;
 }

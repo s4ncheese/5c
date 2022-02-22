@@ -17,6 +17,8 @@ stdio.h
 -
 stdlib.h
 -
+memory.h
+-
 
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.h
 stdlib.h
