@@ -7,6 +7,10 @@
 
 #include <stddef.h>
 
+int cmp_long_long(const void *pa, const void *pb);
+
+int countNUnique(long long *array, int size);
+
 // Возвращает максимальное из чисел a и b
 long long max2_(long long a, long long b);
 

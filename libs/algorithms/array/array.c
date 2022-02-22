@@ -8,6 +8,30 @@
 #include <math.h>
 #include "array.h"
 #include <stdbool.h>
+#include <stdlib.h>
+
+int cmp_long_long(const void *pa, const void *pb) {
+    long long arg1 = *(const long long *)pa;
+    long long arg2 = *(const long long *)pb;
+
+    if (arg1 > arg2) return 1;
+    if (arg1 == arg2) return 0;
+
+    return -1;
+}
+
+int countNUnique(long long *array, int size) {
+    if (size == 0 || size == 1) return size;
+
+    qsort(array, size, sizeof(long long), cmp_long_long);
+
+    int amountOfUniques = 1;
+    for (int i = 1; i < size; i++)
+        if (array[i] != array[i - 1])
+            amountOfUniques++;
+
+    return amountOfUniques;
+}
 
 long long max2_(const long long a, const long long b) {
     return a > b ? a : b;

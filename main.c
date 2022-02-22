@@ -416,6 +416,14 @@ void sortByDistances(matrix m) {
     insertionSortRowsMatrixByRowCritetiaF(m, getDistance);
 }
 
+int countEqClassesByRowsSum(matrix m) {
+    long long rowsSum[m.nRows];
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        rowsSum[rowInd] = getSum(m.values[rowInd], m.nCols);
+
+    return countNUnique(rowsSum, m.nRows);
+}
+
 int main() {
     test();
 
@@ -425,9 +433,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    sortByDistances(m);
-
-    outputMatrix(m);
+    printf("%d", countEqClassesByRowsSum(m));
 
     return 0;
 }
