@@ -110,6 +110,17 @@ long long getMinInCol(int *col, int nElements) {
     return min;
 }
 
+int getMaxInColPos(int *col, int nElements) {
+    int max = col[0], maxPos = 0;
+    for (int i = 1; i < nElements; i++)
+        if (col[i] > max) {
+            max = col[i];
+            maxPos = i;
+        }
+
+    return maxPos;
+}
+
 // Возвращает матрицу - произведение матриц m1 и m2
 matrix mulMatrices(matrix m1, matrix m2) {
     if (m1.nCols != m2.nRows) {
@@ -154,7 +165,7 @@ bool isUnique(long long *array, int size) {
     return true;
 }
 
-void insertionSortRowsMatrixByRowCritetiaF(matrix m, float (*criteria)(int *, int)) {
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
     float criteriaArray[m.nRows];
      for (int i = 0; i < m.nRows; i++)
          criteriaArray[i] = criteria(m.values[i], m.nCols);

@@ -6,23 +6,33 @@
 
 #IncludeRegexTransform: 
 
-C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.c
-stdio.h
--
-limits.h
--
-assert.h
--
-math.h
--
-array.h
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.h
+stddef.h
+-
+
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
 stdbool.h
+-
+stdio.h
 -
 stdlib.h
 -
 
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.h
+stdlib.h
+-
+stdbool.h
+-
+
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/main.c
+libs/data_structures/vectors/vector.h
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.h
+libs/data_structures/matrix/matrix.h
+C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h
+libs/algorithms/array/array.h
 C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/algorithms/array/array.h
-stddef.h
+assert.h
+-
+stdio.h
 -
 

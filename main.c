@@ -413,7 +413,7 @@ int getMinInArea(matrix m) {
 }
 
 void sortByDistances(matrix m) {
-    insertionSortRowsMatrixByRowCritetiaF(m, getDistance);
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
 
 int countEqClassesByRowsSum(matrix m) {
@@ -422,6 +422,26 @@ int countEqClassesByRowsSum(matrix m) {
         rowsSum[rowInd] = getSum(m.values[rowInd], m.nCols);
 
     return countNUnique(rowsSum, m.nRows);
+}
+
+int getNSpecialElements(matrix m) {
+    int amountOfSpecials = 0;
+    for (int colInd = 0; colInd < m.nCols; colInd++) {
+        int specialEl = m.values[0][colInd];
+        int sumOfColElements = 0;
+        for (int rowInd = 1; rowInd < m.nRows; rowInd++) {
+            if (m.values[rowInd][colInd] > specialEl) {
+                sumOfColElements += specialEl;
+                specialEl = m.values[rowInd][colInd];
+            } else
+                sumOfColElements += m.values[rowInd][colInd];
+        }
+        if (specialEl > sumOfColElements)
+            amountOfSpecials++;
+    }
+
+    return amountOfSpecials;
+
 }
 
 int main() {
@@ -433,7 +453,7 @@ int main() {
     matrix m = getMemMatrix(nRows, nCols);
     inputMatrix(m);
 
-    printf("%d", countEqClassesByRowsSum(m));
+    printf("%d", getNSpecialElements(m));
 
     return 0;
 }
