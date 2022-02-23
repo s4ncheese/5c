@@ -16,7 +16,7 @@ matrix getMemMatrix(int nRows, int nCols) {
     return (matrix) {values, nRows, nCols};
 }
 
-c {
+fMatrix getMemFMatrix(int nRows, int nCols){
     float **values = (float **) malloc(sizeof(float *) * nRows);
     for (int i = 0; i < nRows; i++)
         values[i] = malloc(sizeof(float) * nCols);

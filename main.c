@@ -526,7 +526,7 @@ float getNorm(fMatrix m) {
     float norm = fabs((float)m.values[0][0]);
     for (int i = 0; i < m.nRows; i++)
         for (int j = 0; j < m.nCols; j++)
-            if (fabs(m.values[i][j] > norm))
+            if (fabs(m.values[i][j]) > norm)
                 norm = fabs(m.values[i][j]);
 
     return norm;
@@ -549,9 +549,9 @@ int main() {
     int nMatrices, nRows, nCols;
     scanf("%d %d %d", &nMatrices, &nRows, &nCols);
 
-    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
+    fMatrix *ms = getMemArrayOfFMatrices(nMatrices, nRows, nCols);
 
-    inputMatrices(ms, nMatrices);
+    inputFMatrices(ms, nMatrices);
 
     printMaxNormMatrices(ms, nMatrices);
 
