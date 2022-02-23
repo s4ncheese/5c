@@ -462,18 +462,42 @@ void swapPenultimateRow(matrix m, int n) {
     memcpy(m.values[m.nRows - 2], col, m.nCols * sizeof(int));
 }
 
+bool isNonDescendingSorted(int *array, int size) {
+    for (int elementInd = 0; elementInd < size - 1; elementInd++)
+        if (array[elementInd] > array[elementInd + 1])
+            return false;
+
+    return true;
+}
+
+bool hasAllNonDescendingRows(matrix m) {
+    for (int rowInd = 0; rowInd < m. nRows; rowInd++)
+        if (!isNonDescendingSorted(m.values[rowInd], m.nCols))
+            return false;
+
+    return true;
+}
+
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrices) {
+    int countMatricesNonDescendingRows = 0;
+    for (int matrixInd = 0; matrixInd < nMatrices; matrixInd++)
+        if (hasAllNonDescendingRows(ms[matrixInd]))
+            countMatricesNonDescendingRows++;
+
+    return countMatricesNonDescendingRows;
+}
+
 int main() {
-    test();
+//    test();
 
-    int nRows, nCols;
-    scanf("%d %d", &nRows, &nCols);
+    int nMatrices, nRows, nCols;
+    scanf("%d %d %d", &nMatrices, &nRows, &nCols);
 
-    matrix m = getMemMatrix(nRows, nCols);
-    inputMatrix(m);
+    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
 
-    swapPenultimateRow(m, m.nRows);
+    inputMatrices(ms, nMatrices);
 
-    outputMatrix(m);
+    printf("%d", countNonDescendingRowsMatrices(ms, nMatrices));
 
     return 0;
 }
