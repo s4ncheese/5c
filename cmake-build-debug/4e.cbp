@@ -173,6 +173,12 @@
 		<Unit filename="C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.h">
 			<Option target="data_structures"/>
 		</Unit>
+		<Unit filename="C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/tests.c">
+			<Option target="data_structures"/>
+		</Unit>
+		<Unit filename="C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/tests.h">
+			<Option target="data_structures"/>
+		</Unit>
 		<Unit filename="C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/unordered_array_set/unordered_array_set.h">
 			<Option target="data_structures"/>
 		</Unit>

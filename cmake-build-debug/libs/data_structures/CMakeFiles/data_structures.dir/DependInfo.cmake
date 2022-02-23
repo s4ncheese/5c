@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/bitset/bitset.c" "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/bitset/bitset.c.obj"
   "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/matrix.c" "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj"
+  "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/matrix/tests.c" "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/matrix/tests.c.obj"
   "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/unordered_array_set/unsorted_array_set.c" "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/unordered_array_set/unsorted_array_set.c.obj"
   "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/libs/data_structures/vectors/vector.c" "C:/Projects/CLionProjects/5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/vectors/vector.c.obj"
   )
