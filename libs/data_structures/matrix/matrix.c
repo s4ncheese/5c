@@ -1,6 +1,6 @@
 #include "matrix.h"
 #include <stdio.h>
-#include "../../algorithms/array/array.h"
+#include "..\..\algorithms\array\array.h"
 #include <stdbool.h>
 #include <assert.h>
 #include <memory.h>

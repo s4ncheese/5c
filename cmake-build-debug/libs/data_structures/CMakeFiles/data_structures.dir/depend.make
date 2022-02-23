@@ -8,10 +8,11 @@ libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj: \
  ../libs/algorithms/array/array.h \
  ../libs/data_structures/matrix/matrix.c \
  ../libs/data_structures/matrix/matrix.h
-libs/data_structures/CMakeFiles/data_structures.dir/matrix/tests.c.obj: \
+libs/data_structures/CMakeFiles/data_structures.dir/matrix/tasks.c.obj: \
+ ../libs/algorithms/array/array.h \
  ../libs/data_structures/matrix/matrix.h \
- ../libs/data_structures/matrix/tests.c \
- ../libs/data_structures/matrix/tests.h
+ ../libs/data_structures/matrix/tasks.c \
+ ../libs/data_structures/matrix/tasks.h
 libs/data_structures/CMakeFiles/data_structures.dir/unordered_array_set/unsorted_array_set.c.obj: \
  ../libs/algorithms/array/array.h \
  ../libs/data_structures/unordered_array_set/unordered_array_set.h \
