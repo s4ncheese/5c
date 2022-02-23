@@ -16,6 +16,22 @@ matrix getMemMatrix(int nRows, int nCols) {
     return (matrix) {values, nRows, nCols};
 }
 
+c {
+    float **values = (float **) malloc(sizeof(float *) * nRows);
+    for (int i = 0; i < nRows; i++)
+        values[i] = malloc(sizeof(float) * nCols);
+
+    return (fMatrix) {values, nRows, nCols};
+}
+
+fMatrix *getMemArrayOfFMatrices(int nMatrices, int nRows, int nCols) {
+    fMatrix *matrixArray = (fMatrix *) malloc(sizeof(fMatrix) * nMatrices);
+    for (int matrixIndex = 0; matrixIndex < nMatrices; matrixIndex++)
+        matrixArray[matrixIndex] = getMemFMatrix(nRows, nCols);
+
+    return matrixArray;
+}
+
 // Возвращает массив из nMatrices матриц размером nRows на nCols,
 // размещенный в динамической памяти
 matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols) {
@@ -47,10 +63,21 @@ void inputMatrix(matrix m) {
             scanf("%d", &(m.values[rowInd][colInd]));
 }
 
+void inputFMatrix(fMatrix m) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            scanf("%f", &(m.values[rowInd][colInd]));
+}
+
 // Ввод массива матриц mArray размера nMatrix
 void inputMatrices(matrix *mArray, int nMatrix) {
     for (int mInd = 0; mInd < nMatrix; mInd++)
         inputMatrix(mArray[mInd]);
+}
+
+void inputFMatrices(fMatrix *mArray, int nMatrix) {
+    for (int mInd = 0; mInd < nMatrix; mInd++)
+        inputFMatrix(mArray[mInd]);
 }
 
 // Вывод матрицы m
@@ -58,6 +85,14 @@ void outputMatrix(matrix m) {
     for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
         for (int colInd = 0; colInd < m.nCols; colInd++)
             printf("%d ", m.values[rowInd][colInd]);
+
+        printf("\n");
+    }
+}
+void outputMatrixF(fMatrix m) {
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
+        for (int colInd = 0; colInd < m.nCols; colInd++)
+            printf("%f ", m.values[rowInd][colInd]);
 
         printf("\n");
     }

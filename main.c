@@ -3,6 +3,8 @@
 #include "libs\algorithms\array\array.h"
 #include <assert.h>
 #include <stdio.h>
+#include <math.h>
+#define F_EPS 0.0000001
 
 void test_swapRows_firstAndSecond() {
     matrix m = createMatrixFromArray((int[]) {1, 2, 3,
@@ -520,6 +522,27 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrices) {
         }
 }
 
+float getNorm(fMatrix m) {
+    float norm = fabs((float)m.values[0][0]);
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            if (fabs(m.values[i][j] > norm))
+                norm = fabs(m.values[i][j]);
+
+    return norm;
+}
+
+void printMaxNormMatrices(fMatrix *ms, int nMatrices) {
+    float arrayOfNorms[nMatrices];
+    for (int mInd = 0; mInd < nMatrices; mInd++)
+        arrayOfNorms[mInd] = getNorm(ms[mInd]);
+
+    int min = getMinF(arrayOfNorms, nMatrices);
+    for (int i = 0; i < nMatrices; i++)
+        if (min - arrayOfNorms[i] <= F_EPS)
+            outputMatrixF(ms[i]);
+}
+
 int main() {
 //    test();
 
@@ -530,7 +553,7 @@ int main() {
 
     inputMatrices(ms, nMatrices);
 
-    printMatrixWithMaxZeroRows(ms, nMatrices);
+    printMaxNormMatrices(ms, nMatrices);
 
     return 0;
 }

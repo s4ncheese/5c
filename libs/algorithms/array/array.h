@@ -29,6 +29,10 @@ void fSwap_(float *a, float *b);
 
 int getMax(int *array, int size);
 
+int getMin (int *array, int size);
+
+float getMinF(float *array, int size);
+
 // Ввод массива array размера size
 void inputArray_(long long *array, size_t size);
 

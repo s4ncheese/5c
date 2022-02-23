@@ -12,12 +12,22 @@ typedef struct matrix {
     int nCols;
 } matrix;
 
+typedef struct fMatrix {
+    float **values;
+    int nRows;
+    int nCols;
+}fMatrix;
+
 typedef struct position {
     int rowIndex;
     int colIndex;
 } position;
 
 matrix getMemMatrix(int nRows, int nCols);
+
+fMatrix getMemFMatrix(int nRows, int nCols);
+
+fMatrix *getMemArrayOfFMatrices(int nMatrices, int nRows, int nCols);
 
 matrix *getMemArrayOfMatrices(int nMatrices, int nRows, int nCols);
 
@@ -27,9 +37,15 @@ void freeMemMatrices(matrix *mArray, int nMatrices);
 
 void inputMatrix(matrix m);
 
+void inputFMatrix(fMatrix m);
+
 void inputMatrices(matrix *mArray, int nMatrix);
 
+void inputFMatrices(fMatrix *mArray, int nMatrix);
+
 void outputMatrix(matrix m);
+
+void outputMatrixF(fMatrix m);
 
 void swapRows(matrix m, int row1, int row2);
 

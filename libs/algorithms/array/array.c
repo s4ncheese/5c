@@ -11,8 +11,8 @@
 #include <stdlib.h>
 
 int cmp_long_long(const void *pa, const void *pb) {
-    long long arg1 = *(const long long *)pa;
-    long long arg2 = *(const long long *)pb;
+    long long arg1 = *(const long long *) pa;
+    long long arg2 = *(const long long *) pb;
 
     if (arg1 > arg2) return 1;
     if (arg1 == arg2) return 0;
@@ -72,7 +72,25 @@ int getMax(int *array, int size) {
     return max;
 }
 
-void inputArray_(long long *array, const size_t size) {
+int getMin(int *array, int size) {
+    int min = array[0];
+    for (int i = 1; i < size; i++)
+        if (array[i] < min)
+            min = array[i];
+
+    return min;
+}
+
+float getMinF(float *array, int size) {
+    float min = array[0];
+    for (int i = 0; i < size; i++)
+        if (array[i] < min)
+            min = array[i];
+
+    return min;
+}
+
+        void inputArray_(long long *array, const size_t size) {
     for (size_t i = 0; i < size; i++)
         scanf("%lld", &array[i]);
 }
