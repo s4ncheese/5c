@@ -17,9 +17,8 @@ void sortColsByMinElement(matrix m) {
 }
 
 void getSquareOfMatrixIfSymmetric(matrix *m) {
-    if (isSymmetricMatrix(*m)) {
+    if (isSymmetricMatrix(*m))
         *m = mulMatrices(*m, *m);
-    }
 }
 
 void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
@@ -192,7 +191,7 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrices) {
 }
 
 float getNorm(fMatrix m) {
-    float norm = fabs((float)m.values[0][0]);
+    float norm = fabs((float) m.values[0][0]);
     for (int i = 0; i < m.nRows; i++)
         for (int j = 0; j < m.nCols; j++)
             if (fabs(m.values[i][j]) > norm)

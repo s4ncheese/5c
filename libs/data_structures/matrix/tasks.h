@@ -2,7 +2,9 @@
 #define INC_4E_TASKS_H
 
 #include "matrix.h"
+
 #define F_EPS 0.0000001
+
 #include <math.h>
 
 void swapMaxMinRows(matrix m);
@@ -46,7 +48,6 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrices);
 float getNorm(fMatrix m);
 
 void printMaxNormMatrices(fMatrix *ms, int nMatrices);
-
 
 
 #endif //INC_4E_TASKS_H

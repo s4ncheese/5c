@@ -16,7 +16,7 @@ typedef struct fMatrix {
     float **values;
     int nRows;
     int nCols;
-}fMatrix;
+} fMatrix;
 
 typedef struct position {
     int rowIndex;
