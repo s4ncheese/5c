@@ -27,6 +27,8 @@ void dSwap_(double *a, double *b);
 
 void fSwap_(float *a, float *b);
 
+int getMax(int *array, int size);
+
 // Ввод массива array размера size
 void inputArray_(long long *array, size_t size);
 

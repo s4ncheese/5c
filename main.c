@@ -471,7 +471,7 @@ bool isNonDescendingSorted(int *array, int size) {
 }
 
 bool hasAllNonDescendingRows(matrix m) {
-    for (int rowInd = 0; rowInd < m. nRows; rowInd++)
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++)
         if (!isNonDescendingSorted(m.values[rowInd], m.nCols))
             return false;
 
@@ -487,6 +487,39 @@ int countNonDescendingRowsMatrices(matrix *ms, int nMatrices) {
     return countMatricesNonDescendingRows;
 }
 
+int countValues(const int *array, int size, const int value) {
+    int amountOfValues = 0;
+    for (int el = 0; el < size; el++)
+        if (array[el] == value)
+            amountOfValues++;
+
+    return amountOfValues;
+}
+
+int countZeroRows(matrix m) {
+    int amountOfZeroRows = 0;
+    for (int rowInd = 0; rowInd < m.nRows; rowInd++) {
+        amountOfZeroRows += countValues(m.values[rowInd],
+                                        m.nCols, 0) == m.nCols;
+    }
+
+    return amountOfZeroRows;
+}
+
+void printMatrixWithMaxZeroRows(matrix *ms, int nMatrices) {
+    int amountOfZeroRowsMatrices[nMatrices];
+    for (int mInd = 0; mInd < nMatrices; mInd++)
+        amountOfZeroRowsMatrices[mInd] = countZeroRows(ms[mInd]);
+
+    int max = getMax(amountOfZeroRowsMatrices, nMatrices);
+
+    for (int i = 0; i < nMatrices; i++)
+        if (amountOfZeroRowsMatrices[i] == max) {
+            outputMatrix(ms[i]);
+            printf("\n");
+        }
+}
+
 int main() {
 //    test();
 
@@ -497,7 +530,7 @@ int main() {
 
     inputMatrices(ms, nMatrices);
 
-    printf("%d", countNonDescendingRowsMatrices(ms, nMatrices));
+    printMatrixWithMaxZeroRows(ms, nMatrices);
 
     return 0;
 }
