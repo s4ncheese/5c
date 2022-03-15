@@ -91,53 +91,21 @@ CMakeFiles/4e.dir/libs/algorithms/array/array.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/4e.dir/libs/algorithms/array/array.c.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\algorithms\array\array.c -o CMakeFiles\4e.dir\libs\algorithms\array\array.c.s
 
-CMakeFiles/4e.dir/libs/algorithms/algorithm.c.obj: CMakeFiles/4e.dir/flags.make
-CMakeFiles/4e.dir/libs/algorithms/algorithm.c.obj: ../libs/algorithms/algorithm.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/4e.dir/libs/algorithms/algorithm.c.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\4e.dir\libs\algorithms\algorithm.c.obj -c C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\algorithms\algorithm.c
-
-CMakeFiles/4e.dir/libs/algorithms/algorithm.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/4e.dir/libs/algorithms/algorithm.c.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\algorithms\algorithm.c > CMakeFiles\4e.dir\libs\algorithms\algorithm.c.i
-
-CMakeFiles/4e.dir/libs/algorithms/algorithm.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/4e.dir/libs/algorithms/algorithm.c.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\algorithms\algorithm.c -o CMakeFiles\4e.dir\libs\algorithms\algorithm.c.s
-
-CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj: CMakeFiles/4e.dir/flags.make
-CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj: ../libs/data_structures/bitset/bitset.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\4e.dir\libs\data_structures\bitset\bitset.c.obj -c C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\data_structures\bitset\bitset.c
-
-CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\data_structures\bitset\bitset.c > CMakeFiles\4e.dir\libs\data_structures\bitset\bitset.c.i
-
-CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\libs\data_structures\bitset\bitset.c -o CMakeFiles\4e.dir\libs\data_structures\bitset\bitset.c.s
-
 # Object files for target 4e
 4e_OBJECTS = \
 "CMakeFiles/4e.dir/main.c.obj" \
-"CMakeFiles/4e.dir/libs/algorithms/array/array.c.obj" \
-"CMakeFiles/4e.dir/libs/algorithms/algorithm.c.obj" \
-"CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj"
+"CMakeFiles/4e.dir/libs/algorithms/array/array.c.obj"
 
 # External object files for target 4e
 4e_EXTERNAL_OBJECTS =
 
 4e.exe: CMakeFiles/4e.dir/main.c.obj
 4e.exe: CMakeFiles/4e.dir/libs/algorithms/array/array.c.obj
-4e.exe: CMakeFiles/4e.dir/libs/algorithms/algorithm.c.obj
-4e.exe: CMakeFiles/4e.dir/libs/data_structures/bitset/bitset.c.obj
 4e.exe: CMakeFiles/4e.dir/build.make
-4e.exe: libs/algorithms/libalgorithms.a
-4e.exe: libs/data_structures/libdata_structures.a
 4e.exe: CMakeFiles/4e.dir/linklibs.rsp
 4e.exe: CMakeFiles/4e.dir/objects1.rsp
 4e.exe: CMakeFiles/4e.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable 4e.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Projects\CLionProjects\5aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable 4e.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\4e.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

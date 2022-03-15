@@ -1,11 +1,11 @@
-//
-// Created by Александр on 12.12.2021.
-//
-
 #ifndef INC_4E_ARRAY_H
 #define INC_4E_ARRAY_H
 
 #include <stddef.h>
+#include <stdbool.h>
+
+void outputArray(const int *array, const size_t size);
+
 
 int cmp_long_long(const void *pa, const void *pb);
 
@@ -92,5 +92,7 @@ long long countIf_(const long long *array, size_t size, int (*predicate)(long lo
 // удовлетворяют функции - предикату.
 // В size записывается новый размер массива
 void deleteIf_(long long *array, size_t *size, int (*deletePredicate)(long long ));
+
+bool isOrdered(const int *a, size_t size);
 
 #endif //INC_4E_ARRAY_H

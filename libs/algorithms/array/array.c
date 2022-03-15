@@ -1,7 +1,3 @@
-//
-// Created by s4ncheese on 12.12.2021.
-//
-
 #include <stdio.h>
 #include <limits.h>
 #include <assert.h>
@@ -9,6 +5,11 @@
 #include "array.h"
 #include <stdbool.h>
 #include <stdlib.h>
+
+void outputArray(const int *array, const size_t size) {
+    for (size_t i = 0; i < size; i++)
+        printf("%d ", array[i]);
+}
 
 int cmp_long_long(const void *pa, const void *pb) {
     long long arg1 = *(const long long *) pa;
@@ -90,7 +91,7 @@ float getMinF(float *array, int size) {
     return min;
 }
 
-        void inputArray_(long long *array, const size_t size) {
+void inputArray_(long long *array, const size_t size) {
     for (size_t i = 0; i < size; i++)
         scanf("%lld", &array[i]);
 }
@@ -216,6 +217,14 @@ void deleteIf_(long long *array, size_t *size, int (*deletePredicate)(long long)
         iRead++;
     }
     *size = iWrite;
+}
+
+bool isOrdered(const int *a, size_t size) {
+    for (size_t i = 1; i < size - 1; i++) {
+        if(a[i - 1] > a[i])
+            return false;
+    }
+    return true;
 }
 
 typedef struct unordered_array_set {

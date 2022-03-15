@@ -6,6 +6,7 @@ add_library(data_structures bitset/bitset.c bitset/bitset.h
         matrix/matrix.h
         matrix/matrix.c
         matrix/tasks.h
-        matrix/tasks.c)
+        matrix/tasks.c
+        )
 
 target_link_libraries(data_structures algorithms/array)
